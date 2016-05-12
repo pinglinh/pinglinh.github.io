@@ -1,0 +1,17 @@
+large breakpoints - widescreen desktop
+<div class="col-lg-1 bg-warning">
+
+creating a column that on a large screen displays at 1 column width
+
+bootstrap has these bacgrkoudn colours that we can add with this code
+bg = background
+warning = orange
+
+
+
+
+
+medium breakpoints - older square desktops
+small breakpoints - tablets
+extra small breakpoints - phones 
+
