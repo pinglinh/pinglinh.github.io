@@ -139,7 +139,7 @@ li {
 }
 #toggle.on + #menu {
   opacity: 1;
-  visibility: visible;
+  visibility: hidden;
 }
 
 /* menu appearance*/
@@ -189,5 +189,14 @@ li a:focus {
 
 
 /* demo styles */
-body { margin-top: 3em; background: #eee; color: #555; font-family: "Open Sans", "Segoe UI", Helvetica, Arial, sans-serif; }
-p, p a { font-size: 12px;text-align: center; color: #888; }
+body { 
+  margin-top: 3em;
+  background: #EEEEEE;
+  color: #555555;
+  font-family: "Open Sans", "Segoe UI", Helvetica, Arial, sans-serif; 
+}
+p, p a {
+  font-size: 12px;
+  text-align: center;
+  color: #888;
+}
