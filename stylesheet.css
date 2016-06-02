@@ -45,6 +45,9 @@
   padding-right: 5px;
 }
 
+.fa-times {
+  color: #272822; 
+}
 
 
 
@@ -144,6 +147,17 @@ li a:focus {
   text-decoration: none;
 }
 
+.modal-title {
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px 20px 10px 20px;
+}
+
+.modal-p {
+  margin: 0;
+  text-align: center;
+  padding: 0px 20px 20px 20px;
+}
 
 /* demo styles */
 body { margin-top: 3em; background: #eee; color: #555; font-family: "Open Sans", "Segoe UI", Helvetica, Arial, sans-serif; }

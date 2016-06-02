@@ -12,7 +12,7 @@
 
 		<link rel="stylesheet" href="fontawesome/css/font-awesome.min.css">
 
-		<link rel="stylesheet" href="animatecss.css">
+		<link rel="stylesheet" href="animate.css">
 
 		<link rel="stylesheet" href="stylesheet.css">
 
@@ -30,7 +30,7 @@
 						<a href="#menu" id="toggle"><span></span></a>
 						<div id="menu">
 						  <ul>
-						    <li><a href="#">Home</a></li>
+						    <li><a href="#" class="paulund_modal">Home</a></li>
 						    <li><a href="#">About Me</a></li>
 						    <li><a href="#">My Work</a></li>
 						    <li><a href="#">Contact</a></li>
@@ -76,10 +76,16 @@
 
 
 <script src="js/jquery-1.12.3.min.js"></script>
-<script src="js/bootstrap.min"></script>
-<script src="javascript.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="navbar.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+<script src="modal_window.js"></script>
 
-
+<script>
+$(document).ready(function(){
+	$('.paulund_modal').paulund_modal_box();
+});
+</script>
 	
 </body>
 </html>
