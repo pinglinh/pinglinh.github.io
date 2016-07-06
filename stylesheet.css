@@ -8,21 +8,40 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+.intro {
+  font-size: 5em;
+}
+
 .profile-photo {
   width: 70%;
   border-radius: 50%;
   opacity: 0.7;
 }
+
 @media (min-width: 720px) {
     .profile-photo {
-      width: 50%; 
+      width: 50%;
     } 
+    .intro {
+      font-size: 1.5em;
+    }
+    .icons {
+      font-size: ;
+    }
   }
+
 @media (min-width: 1024px) {
     .profile-photo {
       width: 40%;
     }
+    .intro {
+      font-size: 1.25em;
+    }
+    .icons {
+      font-size: ;
+    }
   }
+
 
 
 
@@ -32,7 +51,7 @@ body {
 
 
 .icons {
-  font-size: 20px;
+  font-size: 2.5em;
   text-align: center;
 }
 
