@@ -2,20 +2,31 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+
+
+.profile-photo {
+  width: 70%;
+  border-radius: 50%;
+  opacity: 0.7;
+}
+
 .photo-container {
   text-align: center;
   padding-top: 100px;
   font-family: 'Montserrat', sans-serif;
 }
 
-.intro {
-  font-size: 5em;
+.profile-photo:hover {
+  opacity: 1;
 }
 
-.profile-photo {
-  width: 70%;
-  border-radius: 50%;
-  opacity: 0.7;
+.intro {
+  font-size: 3em;
+}
+
+.icons {
+  font-size: 5em;
+  text-align: center;
 }
 
 @media (min-width: 720px) {
@@ -26,63 +37,52 @@ body {
       font-size: 1.5em;
     }
     .icons {
-      font-size: ;
+      font-size: 4em;
     }
   }
 
 @media (min-width: 1024px) {
     .profile-photo {
-      width: 40%;
+      width: 30%;
     }
     .intro {
       font-size: 1.25em;
     }
     .icons {
-      font-size: ;
+      font-size: 3em;
     }
   }
 
 
 
 
-.profile-photo:hover {
-  opacity: 1;
-}
 
 
-.icons {
-  font-size: 2.5em;
-  text-align: center;
-}
+
 
 .fa-linkedin {
   color: #0677B4;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding: 0px 5px 0px 5px;
 }
 
 .fa-twitter {
   color: #1DA1F2;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding: 0px 5px 0px 5px;
 }
 
 .fa-medium {
   color: #14C767;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding: 0px 5px 0px 5px;
 }
 
 .fa-500px {
   color: #00A4DB;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding: 0px 5px 0px 5px;
 }
 
 .fa-github-alt {
   color: #333333;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding: 0px 5px 0px 5px;
 }
 
 .fa-times {
