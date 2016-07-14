@@ -2,17 +2,9 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
-
-
-.profile-photo {
-  width: 70%;
-  border-radius: 50%;
-  opacity: 0.7;
-}
-
 .photo-container {
   text-align: center;
-  padding-top: 100px;
+  padding-top: 0px;
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -20,43 +12,50 @@ body {
   opacity: 1;
 }
 
-.intro {
-  font-size: 3em;
-}
-
-.icons {
-  font-size: 5em;
-  text-align: center;
-}
+@media (min-width: 320px) {
+    .profile-photo {
+      width: 80%;
+      border-radius: 50%;
+      opacity: 0.7;
+    }
+    .intro {
+      font-size: 1.5em;
+    }
+    .icons {
+      font-size: 2em;
+      text-align: center;
+    }
+  }
 
 @media (min-width: 720px) {
     .profile-photo {
       width: 50%;
+      border-radius: 50%;
+      opacity: 0.7;
     } 
     .intro {
       font-size: 1.5em;
     }
     .icons {
       font-size: 4em;
+      text-align: center;
     }
   }
 
 @media (min-width: 1024px) {
     .profile-photo {
       width: 30%;
+      border-radius: 50%;
+      opacity: 0.7;
     }
     .intro {
       font-size: 1.25em;
     }
     .icons {
       font-size: 3em;
+      text-align: center;
     }
   }
-
-
-
-
-
 
 
 
