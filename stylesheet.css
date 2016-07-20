@@ -25,6 +25,7 @@ body {
       font-size: 2em;
       text-align: center;
     }
+
   }
 
 @media (min-width: 720px) {
@@ -54,6 +55,9 @@ body {
     .icons {
       font-size: 3em;
       text-align: center;
+    }
+    .photo-container {
+      padding-top: 100px;
     }
   }
 
