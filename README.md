@@ -1,5 +1,7 @@
-# My personal website :simple_smile:
+# My Personal Website
+
+###### You can visit by going to http://www.pinglinh.com
 
 ![web screenshot](web_screenshot.png)
 
-:simple_smile:
+**Currently under construction**
