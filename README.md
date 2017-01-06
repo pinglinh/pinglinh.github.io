@@ -2,7 +2,7 @@
 
 ## My personal website using [Jekyll](https://jekyllrb.com/)
 
-**This has now moved to this [repository](https://github.com/pinglinh/pinglinh.github.io).**
+**Development repository can be found here [repository](https://github.com/pinglinh/pinglinh.com).**
 
 ### Desktop Version
 
