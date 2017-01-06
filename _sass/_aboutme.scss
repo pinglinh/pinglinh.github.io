@@ -1,0 +1,17 @@
+.profile-photo-aboutme {
+  width: 80%;
+  border-radius: 50%;
+  opacity: 0.7;
+  margin: 20px 0;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.about-me-intro {
+  margin: 0 auto;
+}
+
+.aboutme-subheading {
+  text-align: center;
+}

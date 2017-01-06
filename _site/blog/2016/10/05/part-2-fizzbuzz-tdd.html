@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>pinglinh // Part 2 | FizzBuzz TDD</title>
+  <meta name="description" content="In this part of the FizzBuzz series I will go over my experience of doing a test-driven development of FizzBuzz.">
+	<link rel="stylesheet" href="/css/fontawesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/animate.css">
+  <link rel="icon" href="/photos/favicon.ico" type="image/x-icon">
+	<link href='https://fonts.googleapis.com/css?family=Montserrat|Damion|Lato' rel='stylesheet'>
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/hover-min.css">
+  <link rel="canonical" href="http://localhost:4000/blog/2016/10/05/part-2-fizzbuzz-tdd.html">
+  <link rel="alternate" type="application/rss+xml" title="Linh Nguyen My" href="http://localhost:4000/feed.xml">
+</head>
+
+
+<body>
+  <div class="whole-content">
+      <nav class="site-nav">
+          <a href="#" class="menu-icon">
+            <svg viewBox="0 0 18 15">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </a>
+
+          <div class="trigger">
+            <a class="page-link-3" href="/"><span><i class="fa fa-map-marker fa-lg"></i> Home</span></a>
+
+            <a class="page-link-3 " href="/aboutme/"><span><i class="fa fa-user fa-lg"></i> About Me</span></a>
+
+            <a class="page-link-3 " href="/mywork"><span><i class="fa fa-laptop fa-lg"></i> My Work</span></a>
+
+            <a class="page-link-3 " href="/blog"><span><i class="fa fa-book fa-lg"></i> Blog</span></a>
+
+            <a class="page-link-3 " href="/contact"><span><i class="fa fa-envelope different fa-lg"></i> Contact</span></a>
+
+            <a class="page-link-3" href="/linh_nguyen_my_CV_13.pdf" target="_blank" download="Pinglinh CV"><span><i class="fa fa-file-pdf-o fa-lg"></i> CV</span></a>
+          </div>
+
+      </nav>
+
+    <div class="site-content">
+        <div class="main">
+        <header class="site-header">
+
+  <div class="wrapper">
+    <a class="site-title" href="/">Linh Nguyen My</a>
+  </div>
+
+</header>
+          <div class="page-content">
+            <div class="wrapper">
+              <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Part 2 | FizzBuzz TDD</h1>
+    <p class="post-meta"><time datetime="2016-10-05T00:00:00+01:00" itemprop="datePublished">Oct 5, 2016</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>In this part of the FizzBuzz series I will go over my experience of doing a test-driven development of FizzBuzz.</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*OHuHrzDF6_eznBjVOcWNNA.jpeg" alt="Photo from unsplash (as per usual - I just love their initiative and how they became successful from a side project)" class="img-responsive" /></p>
+
+<p>Following from <a href="https://medium.com/@pinglinh/part-1-fizzbuzz-in-plain-english-bf055cc6e56f#.ajf0jr1as">Part 1 of FizzBuzz</a> which I wrote in plain English, I now want to move onto writing the actual program that will meet the following conditions I have set out. I will be following the <strong>Test Driven Development</strong> (TDD) process to help me in writing executable and refactored code.</p>
+
+<p>Here is what TDD is in my own words:</p>
+
+<ol>
+  <li>
+    <p>Write a test case before the actual code as this drives towards writing better code or code that you actually need</p>
+  </li>
+  <li>
+    <p>Run the tests and see it fail since you haven’t implemented the code yet but this shows that the test is working</p>
+  </li>
+  <li>
+    <p>Then write the code and implement it</p>
+  </li>
+  <li>
+    <p>The tests should render successful if the code has met all the conditions/requirements</p>
+  </li>
+  <li>
+    <p>The code must be cleaned up (refactored) throughout testing and implementation stage to make sure it is readable and it is not repeated - the test made before is there to check that the code is still working even after refactoring</p>
+  </li>
+</ol>
+
+<p>As I will be writing the code in pure Ruby, I will be using RSpec, the testing tool for Ruby.</p>
+
+<h2 id="setting-up">Setting Up</h2>
+
+<p>First the RSpec gem has to be installed:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="err">$</span> <span class="n">gem</span> <span class="n">install</span> <span class="n">rspec</span></code></pre></figure>
+
+<p>Then make a new project directory with <strong>lib, spec directories</strong> which should have the <strong>program</strong> and <strong>spec file</strong> inside respectively.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">FizzBuzz_rspec</span>
+          <span class="p">\</span><span class="n">_____lib</span>
+                  <span class="p">\</span><span class="n">_____fizzbuzz</span><span class="p">.</span><span class="nf">rb</span>
+          <span class="p">\</span><span class="n">_____spec</span>
+                  <span class="p">\</span><span class="n">_____fizzbuzz_spec</span><span class="p">.</span><span class="nf">rb</span>
+                  <span class="p">\</span><span class="n">_____spec_helper</span><span class="p">.</span><span class="nf">rb</span>
+          <span class="p">\</span><span class="n">_____Gemfile</span></code></pre></figure>
+
+<p>Alternatively you can also do the following command to set up the spec directory:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="err">$</span> <span class="n">rspec</span> <span class="n">init</span>
+<span class="n">or</span>
+<span class="err">$</span> <span class="n">rspec</span> <span class="o">--</span><span class="n">init</span></code></pre></figure>
+
+<p>Create a Gemfile with the following:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">source</span> <span class="s2">"https://rubygems.org"</span>
+
+<span class="n">gem</span> <span class="s2">"rspec"</span></code></pre></figure>
+
+<p>Then run the following command in the project directory to install the rspec gem and all its dependencies:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="err">$</span> <span class="n">bundle</span> <span class="n">install</span></code></pre></figure>
+
+<p>In the fizzbuzz_spec.rb file we want to input the following code:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">describe</span> <span class="no">FizzBuzz</span> <span class="k">do</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Then when we run the RSpec command which checks our tests with corresponding code/program/method:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="err">$</span> <span class="n">rspec</span></code></pre></figure>
+
+<p>The error will be as follows:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">fizzbuzz_rspec</span><span class="o">/</span><span class="n">spec</span><span class="o">/</span><span class="n">fizzbuzz_spec</span><span class="p">.</span><span class="nf">rb</span><span class="p">:</span><span class="mi">3</span><span class="ss">:in</span> <span class="sb">`&lt;top (required)&gt;': uninitialized constant FizzBuzz (NameError)</span></code></pre></figure>
+
+<p>This is because we do not yet have a class method called FizzBuzz yet. In fizzbuzz.rb file we need to input:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">FizzBuzz</span> <span class="k">do</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Require this in our fizzbuzz_spec.rb file:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">'FizzBuzz'</span>
+
+<span class="n">describe</span> <span class="no">FizzBuzz</span> <span class="k">do</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Now when we run RSpec, we get:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">No</span> <span class="n">examples</span> <span class="n">found</span><span class="o">.</span>
+
+
+<span class="no">Finished</span> <span class="k">in</span> <span class="mi">0</span><span class="o">.</span><span class="mo">00006</span> <span class="n">seconds</span>
+<span class="mi">0</span> <span class="n">examples</span><span class="p">,</span> <span class="mi">0</span> <span class="n">failures</span></code></pre></figure>
+
+<p>This means that the files are now linked and we can start doing our first test.</p>
+
+<p>Extra notes: You can also add the spec_helper.rb file (or it has already been added when you did rspec init command) in your spec directory to configure your command line output:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">RSpec</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+ <span class="n">config</span><span class="p">.</span><span class="nf">color</span> <span class="o">=</span> <span class="kp">true</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>This will include colours in your terminal. There are other configurations which can be found at RSpec.</p>
+
+<h2 id="testing-and-coding">Testing and Coding</h2>
+
+<p>The first test I will be writing is to meet the conditions of printing out <strong>Fizz when a number is divisible by 3</strong>:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">'FizzBuzz'</span>
+
+<span class="n">describe</span> <span class="no">FizzBuzz</span> <span class="k">do</span>
+  <span class="n">context</span> <span class="s1">'if a number is divisible by'</span> <span class="k">do</span>
+    <span class="n">it</span> <span class="s1">'3 print Fizz'</span> <span class="k">do</span>
+      <span class="n">fizz_buzz</span> <span class="o">=</span> <span class="no">FizzBuzz</span><span class="p">.</span><span class="nf">new</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">fizz_buzz</span><span class="p">.</span><span class="nf">divisible_by_three</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">result</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"Fizz"</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Running Rspec:</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*NHS_fi-r30C-ACIFt6gEfg.png" class="img-responsive" /></p>
+
+<p>You can see that divisible_by_three method is not defined yet. Therefore we go back into our fizzbuzz.rb file to define this method:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">FizzBuzz</span>
+  <span class="k">def</span> <span class="nf">divisible_by_three</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Running RSpec:</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*DAYXL21S92Slz3X4PZZ6ww.png" class="img-responsive" /></p>
+
+<p>Now RSpec tells us that the expected was “Fizz” however we actually got nil. This is because our method did not return anything. We can now go on to include Fizz into our method:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">FizzBuzz</span>
+  <span class="k">def</span> <span class="nf">divisible_by_three</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+    <span class="s2">"Fizz"</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Running RSpec:</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*GSQqF2JESJwLVGq9Zok-kA.png" class="img-responsive" /></p>
+
+<p>This means our test has now passed!</p>
+
+<p>But of course we know that we don’t just simply want any number to be “Fizz” and it is just for numbers that are divisible by 3. As the test is working up to this point, we can go ahead to write the method and see whether the test is still passing:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">FizzBuzz</span>
+  <span class="k">def</span> <span class="nf">divisible_by_three</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">number</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span>
+      <span class="s2">"Fizz"</span>
+    <span class="k">else</span>
+      <span class="n">number</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*bv7Jh5eO6y61bJZzGXUDDQ.png" class="img-responsive" /></p>
+
+<p>The test has passed! Hooray!</p>
+
+<p>Now we can go ahead to write up the tests for our other conditions:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">'FizzBuzz'</span>
+<span class="nb">require</span> <span class="s1">'spec_helper'</span>
+
+<span class="n">describe</span> <span class="no">FizzBuzz</span> <span class="k">do</span>
+  <span class="n">context</span> <span class="s1">'if a number is divisible by'</span> <span class="k">do</span>
+    <span class="n">it</span> <span class="s1">'3 print Fizz'</span> <span class="k">do</span>
+      <span class="n">fizz_buzz</span> <span class="o">=</span> <span class="no">FizzBuzz</span><span class="p">.</span><span class="nf">new</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">fizz_buzz</span><span class="p">.</span><span class="nf">divisible_by_three</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">result</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"Fizz"</span><span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="n">it</span> <span class="s1">'5 print Buzz'</span> <span class="k">do</span>
+      <span class="n">fizz_buzz</span> <span class="o">=</span> <span class="no">FizzBuzz</span><span class="p">.</span><span class="nf">new</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">fizz_buzz</span><span class="p">.</span><span class="nf">divisible_by_five</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">result</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"Buzz"</span><span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="n">it</span> <span class="s1">'15 print FizzBuzz'</span> <span class="k">do</span>
+      <span class="n">fizz_buzz</span> <span class="o">=</span> <span class="no">FizzBuzz</span><span class="p">.</span><span class="nf">new</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">fizz_buzz</span><span class="p">.</span><span class="nf">divisible_by_fifteen</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">result</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"FizzBuzz"</span><span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="n">it</span> <span class="s1">'any other numbers'</span> <span class="k">do</span>
+      <span class="n">fizz_buzz</span> <span class="o">=</span> <span class="no">FizzBuzz</span><span class="p">.</span><span class="nf">new</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">fizz_buzz</span><span class="p">.</span><span class="nf">divisible_by_any_number</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">result</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Running RSpec</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*Nzk9mWGNQFpOJokaAaBakQ.png" class="img-responsive" /></p>
+
+<p>As expected, the three new methods we tested are not yet defined in our code. We can go ahead and write them up in our fizzbuzz.rb file:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">FizzBuzz</span>
+  <span class="k">def</span> <span class="nf">divisible_by_three</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">number</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span>
+      <span class="s2">"Fizz"</span>
+    <span class="k">else</span>
+      <span class="n">number</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">divisible_by_five</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">number</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span>
+      <span class="s2">"Buzz"</span>
+    <span class="k">else</span>
+      <span class="n">number</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">divisible_by_fifteen</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">number</span> <span class="o">%</span> <span class="mi">15</span> <span class="o">==</span> <span class="mi">0</span>
+      <span class="s2">"FizzBuzz"</span>
+    <span class="k">else</span>
+      <span class="n">number</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">divisible_by_any_number</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+    <span class="n">number</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>You should usually do the following steps based on failed tests:</p>
+
+<ol>
+  <li>
+    <p>Undefined method - go and define the method</p>
+  </li>
+  <li>
+    <p>Method returned “nil” - input what you expected in your test</p>
+  </li>
+  <li>
+    <p>Test passed-go ahead and define the next method</p>
+  </li>
+</ol>
+
+<p>As the other methods were pretty much the same I knew it would work but you should follow it step by step as the failed tests in a way guide you to write the next bit of code.</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*CeEZAl2mxQB77j7SJBTk-Q.png" class="img-responsive" /></p>
+
+<p>You can now see that all tests have passed!</p>
+
+<h2 id="refactoring">Refactoring</h2>
+
+<p>Although these tests and code work, it’s not following the principles of DRY (<strong>D</strong>on’t <strong>R</strong>epeat <strong>Y</strong>ourself). There are actually a lot of repetitions in this current code therefore we will be refactoring (restructuring/cleaning up the code) it.</p>
+
+<p>In the spec file, I am repeating the instance variable <strong>fizz_buzz = FizzBuzz.new</strong> in all of my tests therefore I can actually refactor this into one line like so:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">'FizzBuzz'</span>
+<span class="nb">require</span> <span class="s1">'spec_helper'</span>
+
+<span class="n">describe</span> <span class="no">FizzBuzz</span> <span class="k">do</span>
+  <span class="n">context</span> <span class="s1">'if a number is divisible by'</span> <span class="k">do</span>
+    <span class="n">let</span><span class="p">(</span><span class="ss">:fizz_buzz</span><span class="p">)</span> <span class="p">{</span> <span class="no">FizzBuzz</span><span class="p">.</span><span class="nf">new</span> <span class="p">}</span>
+
+    <span class="n">it</span> <span class="s1">'3 print Fizz'</span> <span class="k">do</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">fizz_buzz</span><span class="p">.</span><span class="nf">divisible_by_three</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">result</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"Fizz"</span><span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="n">it</span> <span class="s1">'5 print Buzz'</span> <span class="k">do</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">fizz_buzz</span><span class="p">.</span><span class="nf">divisible_by_five</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">result</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"Buzz"</span><span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="n">it</span> <span class="s1">'15 print FizzBuzz'</span> <span class="k">do</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">fizz_buzz</span><span class="p">.</span><span class="nf">divisible_by_fifteen</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">result</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"FizzBuzz"</span><span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="n">it</span> <span class="s1">'any other numbers'</span> <span class="k">do</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">fizz_buzz</span><span class="p">.</span><span class="nf">divisible_by_any_number</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">result</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>After running RSpec the test still passes!</p>
+
+<p>Now we can start to refactor our code. Instead of defining a method for each method, I can define one and use control flow.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">FizzBuzz</span>
+  <span class="k">def</span> <span class="nf">divisible_by</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">number</span> <span class="o">%</span> <span class="mi">15</span> <span class="o">==</span> <span class="mi">0</span>
+      <span class="s2">"FizzBuzz"</span>
+    <span class="k">elsif</span> <span class="n">number</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span>
+      <span class="s2">"Fizz"</span>
+    <span class="k">elsif</span> <span class="n">number</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span>
+      <span class="s2">"Buzz"</span>
+    <span class="k">else</span>
+      <span class="n">number</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Since I changed the method name, this also needs to reflect in my spec file:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">'FizzBuzz'</span>
+<span class="nb">require</span> <span class="s1">'spec_helper'</span>
+
+<span class="n">describe</span> <span class="no">FizzBuzz</span> <span class="k">do</span>
+  <span class="n">context</span> <span class="s1">'if a number is divisible by'</span> <span class="k">do</span>
+  <span class="n">let</span><span class="p">(</span><span class="ss">:fizz_buzz</span><span class="p">)</span> <span class="p">{</span> <span class="no">FizzBuzz</span><span class="p">.</span><span class="nf">new</span> <span class="p">}</span>
+    <span class="n">it</span> <span class="s1">'3 print Fizz'</span> <span class="k">do</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">fizz_buzz</span><span class="p">.</span><span class="nf">divisible_by</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">result</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"Fizz"</span><span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="n">it</span> <span class="s1">'5 print Buzz'</span> <span class="k">do</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">fizz_buzz</span><span class="p">.</span><span class="nf">divisible_by</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">result</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"Buzz"</span><span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="n">it</span> <span class="s1">'15 print FizzBuzz'</span> <span class="k">do</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">fizz_buzz</span><span class="p">.</span><span class="nf">divisible_by</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">result</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"FizzBuzz"</span><span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="n">it</span> <span class="s1">'any other numbers'</span> <span class="k">do</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">fizz_buzz</span><span class="p">.</span><span class="nf">divisible_by</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">result</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>I’m sure I can refactor this further however these are the only ways I know of right now. Hopefully as I learn more about Ruby and rspec, I will come across many other ways in which the code can be written.</p>
+
+<h2 id="edit">EDIT</h2>
+
+<p>Ok so after thinking around for a bit, I have changed 2 things:</p>
+
+<ol>
+  <li>
+    <p>I realised that my tests do not have a test for when a number is not divisible by 3, 5, or 15.</p>
+  </li>
+  <li>
+    <p>Change the wording in my spec file.</p>
+  </li>
+  <li>
+    <p>Refactoring the program code.</p>
+  </li>
+</ol>
+
+<p>How my spec file looks like now:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">'FizzBuzz'</span>
+<span class="nb">require</span> <span class="s1">'spec_helper'</span>
+
+<span class="n">describe</span> <span class="no">FizzBuzz</span> <span class="k">do</span>
+  <span class="n">context</span> <span class="s1">'when given a number'</span> <span class="k">do</span>
+  <span class="n">let</span><span class="p">(</span><span class="ss">:fizz_buzz</span><span class="p">)</span> <span class="p">{</span> <span class="no">FizzBuzz</span><span class="p">.</span><span class="nf">new</span> <span class="p">}</span>
+    <span class="n">it</span> <span class="s1">'returns Fizz when divisible by 3'</span> <span class="k">do</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">fizz_buzz</span><span class="p">.</span><span class="nf">divisible_by</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">result</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"Fizz"</span><span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="n">it</span> <span class="s1">'returns the number when not divisible by 3'</span> <span class="k">do</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">fizz_buzz</span><span class="p">.</span><span class="nf">divisible_by</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">result</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="n">it</span> <span class="s1">'returns Buzz when divisible by 5'</span> <span class="k">do</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">fizz_buzz</span><span class="p">.</span><span class="nf">divisible_by</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">result</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"Buzz"</span><span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="n">it</span> <span class="s1">'returns the number when not divisible by 5'</span> <span class="k">do</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">fizz_buzz</span><span class="p">.</span><span class="nf">divisible_by</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">result</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="n">it</span> <span class="s1">'returns FizzBuzz when divisible by 15'</span> <span class="k">do</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">fizz_buzz</span><span class="p">.</span><span class="nf">divisible_by</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">result</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"FizzBuzz"</span><span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="n">it</span> <span class="s1">'returns the number when not divisible by 15'</span> <span class="k">do</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">fizz_buzz</span><span class="p">.</span><span class="nf">divisible_by</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">result</span><span class="p">).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>As you can see, I am now more explicit in my description of my tests which makes it clearer as to what the tests are testing (and what the code should do).</p>
+
+<p>I also now have a negative test case for when a number is not divisible by each specified number. This means I no longer need to have the ‘returns any other number’ test case.</p>
+
+<p>This is better because I’m being more specific in terms of writing the program. Previously, without having the negative test case, when I wrote this bit of code:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">divisible_by_three</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+  <span class="s2">"Fizz"</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>The test would pass when it shouldn’t because I want my program to have specified the control flow of only printing “Fizz” when divisible by 3.</p>
+
+<p>Now because I have changed my test back to the method names of divisible_by_three/five/fifteen instead of divisible_by, my code no longer works. This was a tricky situation for me as I did not know how I could refactor the code whilst having 3 different method names in my spec file! <strong>However someone pointed out to me that I can call a class method within the class!!!!!!!!!!!!!</strong> 😪 😱 😭</p>
+
+<p>Take a look:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">FizzBuzz</span>
+
+  <span class="k">def</span> <span class="nf">divisible_by</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">number</span> <span class="o">%</span> <span class="mi">15</span> <span class="o">==</span> <span class="mi">0</span>
+      <span class="s2">"FizzBuzz"</span>
+    <span class="k">elsif</span> <span class="n">number</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span>
+      <span class="s2">"Fizz"</span>
+    <span class="k">elsif</span> <span class="n">number</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span>
+      <span class="s2">"Buzz"</span>
+    <span class="k">else</span>
+      <span class="n">number</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="kp">private</span>
+
+  <span class="k">def</span> <span class="nf">divisible_by_three</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+    <span class="n">divisible_by</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">divisible_by_five</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+    <span class="n">divisible_by</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">divisible_by_fifteen</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+    <span class="n">divisible_by</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+  <span class="k">end</span>
+
+<span class="k">end</span></code></pre></figure>
+
+<p>Can you see how I am still defining the individual methods but calling the universal method inside them? At the moment I feel like this is the only way to refactor without having to define all the methods! I have made the specific methods private so that they cannot be called outside of the class.</p>
+
+<p>If anybody knows of another way to do this please let me know in the comments! 🤓</p>
+
+<p style="text-align: center">- - -</p>
+
+<p>This blog post has also been published on <a href="https://medium.com/@pinglinh/latest">medium</a>.</p>
+
+  </div>
+
+</article>
+
+            </div>
+          </div>
+
+           <footer class="site-footer">
+  <div class="wrapper">
+
+    <!-- <h2 class="footer-heading">Linh Nguyen My</h2> -->
+
+<!--     <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>Linh Nguyen My</li>
+          <li><a href="mailto:lnguyenmy1@gmail.com">lnguyenmy1@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <a href="https://uk.linkedin.com/in/lnguyenmy" target="_blank"><i class="fa fa-linkedin"></i></a>
+        <a href="https://twitter.com/pinglinh" target="_blank"><i class="fa fa-twitter"></i></a>
+        <a href="https://medium.com/@pinglinh" target="_blank"><i class="fa fa-medium"></i></a>
+        <a href="https://500px.com/pinglinh" target="_blank"><i class="fa fa-500px"></i></a>
+        <a href="https://github.com/pinglinh" target="_blank"><i class="fa fa-github-alt"></i></a>
+      </div> -->
+
+      <div class="footer">
+
+
+        <div class="social-media">
+        <a href="https://uk.linkedin.com/in/lnguyenmy" target="_blank"><i class="fa fa-linkedin fa-lg"></i></a>
+        <a href="https://twitter.com/pinglinh" target="_blank"><i class="fa fa-twitter fa-lg"></i></a>
+        <a href="https://medium.com/@pinglinh" target="_blank"><i class="fa fa-medium fa-lg"></i></a>
+        <a href="https://500px.com/pinglinh" target="_blank"><i class="fa fa-500px fa-lg"></i></a>
+        <a href="https://github.com/pinglinh" target="_blank"><i class="fa fa-github-alt fa-lg"></i></a>
+        <a href="mailto:lnguyenmy1@gmail.com"><i class="fa fa-envelope fa-lg"></i></a>
+        </div>
+
+        <div class="title-mail">
+        made with <span style="color: #D65F5F"><strong>&hearts;</strong></span> by <span style="color: #56dbc9"><strong>Linh Nguyen My</strong></span> | &copy; 2016 
+
+        <!-- Linh Nguyen My | www.pinglinh.com -->
+        </div>
+
+
+
+        <!-- <p>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</p> -->
+
+      
+    </div>
+
+  </div>
+
+</footer>
+
+
+        </div>
+      </div>
+  </div>
+</body>
+
+</html>
+

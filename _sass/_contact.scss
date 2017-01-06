@@ -1,0 +1,88 @@
+form {
+
+  button {
+    background-color: $grey-color-light;
+    text-align: center;
+    border: 2px solid #CCCCCC;
+    margin: 10px 0;
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+
+  textarea {
+    border: 2px solid #CCCCCC;
+    margin: 10px 0;
+    width: 100%;
+    text-align: left;
+    padding: 10px;
+    background-color: transparent;
+    height: 200px;
+    border-radius: 4px;
+
+    background-size: 20px 20px;
+    background-image: url('../photos/compose.svg');
+    background-position: 11px 10px;
+    background-repeat: no-repeat;
+    padding-left: 40px;
+
+    &:focus {
+      outline: none;
+      border-color: #272822;
+    }
+  }
+
+  input[type=text] {
+    border: 2px solid #CCCCCC;
+    margin: 10px 0;
+    width: 100%;
+    text-align: left;
+    padding: 10px;
+    background-color: transparent;
+    border-radius: 4px;
+
+    background-size: 20px 20px;
+    background-image: url('../photos/person.svg');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding-left: 40px;
+
+    &:focus {
+      outline: none;
+      border-color: #272822;
+    }
+  }
+
+  input[type=email] {
+    border: 2px solid #CCCCCC;
+    margin: 10px 0;
+    width: 100%;
+    text-align: left;
+    padding: 10px;
+    background-color: transparent;
+    border-radius: 4px;
+
+    background-size: 20px 20px;
+    background-image: url('../photos/envelope.svg');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding-left: 40px;
+
+    &:focus {
+      outline: none;
+      border-color: #272822;
+    }
+
+  }
+
+  label {
+    text-align: center;
+    width: 100%;
+  }
+
+}
+
+.contact-text {
+  text-align: center;
+}

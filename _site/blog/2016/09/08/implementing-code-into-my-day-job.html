@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>pinglinh // Implementing code into my day job</title>
+  <meta name="description" content="">
+	<link rel="stylesheet" href="/css/fontawesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/animate.css">
+  <link rel="icon" href="/photos/favicon.ico" type="image/x-icon">
+	<link href='https://fonts.googleapis.com/css?family=Montserrat|Damion|Lato' rel='stylesheet'>
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/hover-min.css">
+  <link rel="canonical" href="http://localhost:4000/blog/2016/09/08/implementing-code-into-my-day-job.html">
+  <link rel="alternate" type="application/rss+xml" title="Linh Nguyen My" href="http://localhost:4000/feed.xml">
+</head>
+
+
+<body>
+  <div class="whole-content">
+      <nav class="site-nav">
+          <a href="#" class="menu-icon">
+            <svg viewBox="0 0 18 15">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </a>
+
+          <div class="trigger">
+            <a class="page-link-3" href="/"><span><i class="fa fa-map-marker fa-lg"></i> Home</span></a>
+
+            <a class="page-link-3 " href="/aboutme/"><span><i class="fa fa-user fa-lg"></i> About Me</span></a>
+
+            <a class="page-link-3 " href="/mywork"><span><i class="fa fa-laptop fa-lg"></i> My Work</span></a>
+
+            <a class="page-link-3 " href="/blog"><span><i class="fa fa-book fa-lg"></i> Blog</span></a>
+
+            <a class="page-link-3 " href="/contact"><span><i class="fa fa-envelope different fa-lg"></i> Contact</span></a>
+
+            <a class="page-link-3" href="/linh_nguyen_my_CV_13.pdf" target="_blank" download="Pinglinh CV"><span><i class="fa fa-file-pdf-o fa-lg"></i> CV</span></a>
+          </div>
+
+      </nav>
+
+    <div class="site-content">
+        <div class="main">
+        <header class="site-header">
+
+  <div class="wrapper">
+    <a class="site-title" href="/">Linh Nguyen My</a>
+  </div>
+
+</header>
+          <div class="page-content">
+            <div class="wrapper">
+              <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Implementing code into my day job</h1>
+    <p class="post-meta"><time datetime="2016-09-08T00:00:00+01:00" itemprop="datePublished">Sep 8, 2016</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p><img src="https://cdn-images-1.medium.com/max/800/1*Fq8IzVxeUrl3t-Mr7rf7VQ.jpeg" alt="Photo from unsplash.com" class="img-responsive" /></p>
+
+<p>Now this may seem simple to some people but I had a <strong>eureka moment</strong> today.</p>
+
+<p>Without going into too much detail, one of my tasks is to produce letters to students confirming their degree award. There is a letter template for this on the system but not in terms of the sentence which includes award confirmation. Therefore I have to manually copy and paste student’s award information into a word document and input that in a sentence, then copy and paste that into the letter template.</p>
+
+<p>The more efficient way to do this would be to have macro fields imbedded in the letter template which would take required information and form the sentence/letter on preview. Alas it does take a while to implement new ideas/procedures therefore this will probably have to wait till the next meeting and even then that’s not something that can be implemented right away.</p>
+
+<p>However, as I have been on <a href="http://www.codecademy.com/">codecademy</a> recently doing the Ruby course for the 3rd time, I realised I could use Ruby string interpolation! Yes I will still have to copy and paste the information into my assigned variables and copy the rendered sentence but at least I don’t have to worry about the order of my sentence!</p>
+
+<p>I searched for an online Ruby console and found <a href="https://repl.it/">repl</a>.</p>
+
+<p>Here is the code I have written:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">award</span> <span class="o">=</span> <span class="s2">"Bachelor of Laws Honours"</span>
+<span class="n">classification</span> <span class="o">=</span> <span class="s2">"Second Class (Upper Division)"</span>
+<span class="n">degree</span> <span class="o">=</span> <span class="s2">"Law (LLB)"</span>
+<span class="n">award_date</span> <span class="o">=</span> <span class="s2">"12/Aug/2016"</span>
+<span class="nb">print</span> <span class="s2">"I can also confirm that you were awarded a </span><span class="si">#{</span><span class="n">classification</span><span class="si">}</span><span class="s2"> for your </span><span class="si">#{</span><span class="n">award</span><span class="si">}</span><span class="s2"> in </span><span class="si">#{</span><span class="n">degree</span><span class="si">}</span><span class="s2"> on </span><span class="si">#{</span><span class="n">award_date</span><span class="si">}</span><span class="s2">."</span></code></pre></figure>
+
+<p>When I click run I get the full sentence which I can then simply copy and paste onto my letter template!</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&gt; I can also confirm that you were awarded a Second Class (Upper Division) for your Bachelor of Laws Honours in Law (LLB) on 12/Aug/2016.&gt;
+</code></pre>
+</div>
+
+<p>I know this is so simple, but it is definitely helping to increase my work efficiency. Perhaps you know of another way which may solve my problem? Let me know in the comments :)</p>
+
+<p style="text-align: center">- - -</p>
+
+<p>This blog post has also been published on <a href="https://medium.com/@pinglinh/latest">medium</a>.</p>
+
+
+  </div>
+
+</article>
+
+            </div>
+          </div>
+
+           <footer class="site-footer">
+  <div class="wrapper">
+
+    <!-- <h2 class="footer-heading">Linh Nguyen My</h2> -->
+
+<!--     <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>Linh Nguyen My</li>
+          <li><a href="mailto:lnguyenmy1@gmail.com">lnguyenmy1@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <a href="https://uk.linkedin.com/in/lnguyenmy" target="_blank"><i class="fa fa-linkedin"></i></a>
+        <a href="https://twitter.com/pinglinh" target="_blank"><i class="fa fa-twitter"></i></a>
+        <a href="https://medium.com/@pinglinh" target="_blank"><i class="fa fa-medium"></i></a>
+        <a href="https://500px.com/pinglinh" target="_blank"><i class="fa fa-500px"></i></a>
+        <a href="https://github.com/pinglinh" target="_blank"><i class="fa fa-github-alt"></i></a>
+      </div> -->
+
+      <div class="footer">
+
+
+        <div class="social-media">
+        <a href="https://uk.linkedin.com/in/lnguyenmy" target="_blank"><i class="fa fa-linkedin fa-lg"></i></a>
+        <a href="https://twitter.com/pinglinh" target="_blank"><i class="fa fa-twitter fa-lg"></i></a>
+        <a href="https://medium.com/@pinglinh" target="_blank"><i class="fa fa-medium fa-lg"></i></a>
+        <a href="https://500px.com/pinglinh" target="_blank"><i class="fa fa-500px fa-lg"></i></a>
+        <a href="https://github.com/pinglinh" target="_blank"><i class="fa fa-github-alt fa-lg"></i></a>
+        <a href="mailto:lnguyenmy1@gmail.com"><i class="fa fa-envelope fa-lg"></i></a>
+        </div>
+
+        <div class="title-mail">
+        made with <span style="color: #D65F5F"><strong>&hearts;</strong></span> by <span style="color: #56dbc9"><strong>Linh Nguyen My</strong></span> | &copy; 2016 
+
+        <!-- Linh Nguyen My | www.pinglinh.com -->
+        </div>
+
+
+
+        <!-- <p>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</p> -->
+
+      
+    </div>
+
+  </div>
+
+</footer>
+
+
+        </div>
+      </div>
+  </div>
+</body>
+
+</html>
+

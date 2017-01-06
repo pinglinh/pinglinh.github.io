@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>pinglinh // Part 1 | FizzBuzz in plain English</title>
+  <meta name="description" content="This is me attempting to explain the printing of the first 20 numbers of FizzBuzz in plain English">
+	<link rel="stylesheet" href="/css/fontawesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/animate.css">
+  <link rel="icon" href="/photos/favicon.ico" type="image/x-icon">
+	<link href='https://fonts.googleapis.com/css?family=Montserrat|Damion|Lato' rel='stylesheet'>
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/hover-min.css">
+  <link rel="canonical" href="http://localhost:4000/blog/2016/09/12/part-1-fizzbuzz-in-plain-english.html">
+  <link rel="alternate" type="application/rss+xml" title="Linh Nguyen My" href="http://localhost:4000/feed.xml">
+</head>
+
+
+<body>
+  <div class="whole-content">
+      <nav class="site-nav">
+          <a href="#" class="menu-icon">
+            <svg viewBox="0 0 18 15">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </a>
+
+          <div class="trigger">
+            <a class="page-link-3" href="/"><span><i class="fa fa-map-marker fa-lg"></i> Home</span></a>
+
+            <a class="page-link-3 " href="/aboutme/"><span><i class="fa fa-user fa-lg"></i> About Me</span></a>
+
+            <a class="page-link-3 " href="/mywork"><span><i class="fa fa-laptop fa-lg"></i> My Work</span></a>
+
+            <a class="page-link-3 " href="/blog"><span><i class="fa fa-book fa-lg"></i> Blog</span></a>
+
+            <a class="page-link-3 " href="/contact"><span><i class="fa fa-envelope different fa-lg"></i> Contact</span></a>
+
+            <a class="page-link-3" href="/linh_nguyen_my_CV_13.pdf" target="_blank" download="Pinglinh CV"><span><i class="fa fa-file-pdf-o fa-lg"></i> CV</span></a>
+          </div>
+
+      </nav>
+
+    <div class="site-content">
+        <div class="main">
+        <header class="site-header">
+
+  <div class="wrapper">
+    <a class="site-title" href="/">Linh Nguyen My</a>
+  </div>
+
+</header>
+          <div class="page-content">
+            <div class="wrapper">
+              <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Part 1 | FizzBuzz in plain English</h1>
+    <p class="post-meta"><time datetime="2016-09-12T00:00:00+01:00" itemprop="datePublished">Sep 12, 2016</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>This is me attempting to explain the printing of the first 20 numbers of FizzBuzz in plain English</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*dOKjBR9uQcOD2EjKIyDcPA.jpeg" alt="Photo from unsplash.com" height="465px" width="700px" class="img-responsive" /></p>
+
+<p>I want to write a program which will:</p>
+
+<ul>
+  <li>print the word <strong>Fizz</strong> if the number entered is <strong>divisible by 3</strong></li>
+  <li>print the word <strong>Buzz</strong> if the number is <strong>divisible by 5</strong></li>
+  <li>print the word <strong>FizzBuzz</strong> if the number is <strong>divisible by both 3 and 5</strong></li>
+  <li>print the number entered if the number is not divisible by 3 and 5</li>
+</ul>
+
+<p>We now need to write out our expected answers for the first 20 numbers entered.</p>
+
+<ol>
+  <li>
+    <p>1</p>
+  </li>
+  <li>
+    <p>2</p>
+  </li>
+  <li>
+    <p>Fizz</p>
+  </li>
+  <li>
+    <p>4</p>
+  </li>
+  <li>
+    <p>Buzz</p>
+  </li>
+  <li>
+    <p>Fizz</p>
+  </li>
+  <li>
+    <p>7</p>
+  </li>
+  <li>
+    <p>8</p>
+  </li>
+  <li>
+    <p>Fizz</p>
+  </li>
+  <li>
+    <p>Buzz</p>
+  </li>
+  <li>
+    <p>11</p>
+  </li>
+  <li>
+    <p>Fizz</p>
+  </li>
+  <li>
+    <p>13</p>
+  </li>
+  <li>
+    <p>14</p>
+  </li>
+  <li>
+    <p>FizzBuzz</p>
+  </li>
+  <li>
+    <p>16</p>
+  </li>
+  <li>
+    <p>17</p>
+  </li>
+  <li>
+    <p>Fizz</p>
+  </li>
+  <li>
+    <p>19</p>
+  </li>
+  <li>
+    <p>Buzz</p>
+  </li>
+</ol>
+
+<p>When we have written our code based on the conditions we have set out before and also the answers that we expect, we can check whether our code works by comparing the rendered answer with the expected answers. If we get different answers to our test, this means that we have to go back to our program to fix our code. However if our program does render the correct answers when we input numbers 1–20, this means our program is working!</p>
+
+<p style="text-align: center">- - -</p>
+
+<p>This blog post has also been published on <a href="https://medium.com/@pinglinh/latest">medium</a>.</p>
+
+
+  </div>
+
+</article>
+
+            </div>
+          </div>
+
+           <footer class="site-footer">
+  <div class="wrapper">
+
+    <!-- <h2 class="footer-heading">Linh Nguyen My</h2> -->
+
+<!--     <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>Linh Nguyen My</li>
+          <li><a href="mailto:lnguyenmy1@gmail.com">lnguyenmy1@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <a href="https://uk.linkedin.com/in/lnguyenmy" target="_blank"><i class="fa fa-linkedin"></i></a>
+        <a href="https://twitter.com/pinglinh" target="_blank"><i class="fa fa-twitter"></i></a>
+        <a href="https://medium.com/@pinglinh" target="_blank"><i class="fa fa-medium"></i></a>
+        <a href="https://500px.com/pinglinh" target="_blank"><i class="fa fa-500px"></i></a>
+        <a href="https://github.com/pinglinh" target="_blank"><i class="fa fa-github-alt"></i></a>
+      </div> -->
+
+      <div class="footer">
+
+
+        <div class="social-media">
+        <a href="https://uk.linkedin.com/in/lnguyenmy" target="_blank"><i class="fa fa-linkedin fa-lg"></i></a>
+        <a href="https://twitter.com/pinglinh" target="_blank"><i class="fa fa-twitter fa-lg"></i></a>
+        <a href="https://medium.com/@pinglinh" target="_blank"><i class="fa fa-medium fa-lg"></i></a>
+        <a href="https://500px.com/pinglinh" target="_blank"><i class="fa fa-500px fa-lg"></i></a>
+        <a href="https://github.com/pinglinh" target="_blank"><i class="fa fa-github-alt fa-lg"></i></a>
+        <a href="mailto:lnguyenmy1@gmail.com"><i class="fa fa-envelope fa-lg"></i></a>
+        </div>
+
+        <div class="title-mail">
+        made with <span style="color: #D65F5F"><strong>&hearts;</strong></span> by <span style="color: #56dbc9"><strong>Linh Nguyen My</strong></span> | &copy; 2016 
+
+        <!-- Linh Nguyen My | www.pinglinh.com -->
+        </div>
+
+
+
+        <!-- <p>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</p> -->
+
+      
+    </div>
+
+  </div>
+
+</footer>
+
+
+        </div>
+      </div>
+  </div>
+</body>
+
+</html>
+

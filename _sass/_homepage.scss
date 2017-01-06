@@ -1,0 +1,53 @@
+body {
+  font-family: $base-font-family;
+}
+
+.photo-container {
+  text-align: center;
+  padding-top: 0px;
+  font-family: $base-font-family;
+}
+
+.profile-photo {
+  width: 40%;
+  border-radius: 50%;
+  opacity: 0.7;
+  min-width: 250px;
+   &:hover {
+    opacity: 1;
+   }
+}
+
+.fa-linkedin {
+  color: #0677B4;
+  padding: 0px 5px 0px 5px;
+}
+
+.fa-twitter {
+  color: #1DA1F2;
+  padding: 0px 5px 0px 5px;
+}
+
+.fa-medium {
+  color: #14C767;
+  padding: 0px 5px 0px 5px;
+}
+
+.fa-500px {
+  color: #00A4DB;
+  padding: 0px 5px 0px 5px;
+}
+
+.fa-github-alt {
+  color: #333333;
+  padding: 0px 5px 0px 5px;
+}
+
+.fa-envelope:not(.different) {
+  color: #F25C4E;
+  padding: 0 5px;
+}
+
+.fa-times {
+  color: #272822;
+}

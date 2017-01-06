@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>pinglinh // My first pull request</title>
+  <meta name="description" content="">
+	<link rel="stylesheet" href="/css/fontawesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/animate.css">
+  <link rel="icon" href="/photos/favicon.ico" type="image/x-icon">
+	<link href='https://fonts.googleapis.com/css?family=Montserrat|Damion|Lato' rel='stylesheet'>
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/hover-min.css">
+  <link rel="canonical" href="http://localhost:4000/blog/2016/08/08/my-first-pull-request.html">
+  <link rel="alternate" type="application/rss+xml" title="Linh Nguyen My" href="http://localhost:4000/feed.xml">
+</head>
+
+
+<body>
+  <div class="whole-content">
+      <nav class="site-nav">
+          <a href="#" class="menu-icon">
+            <svg viewBox="0 0 18 15">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </a>
+
+          <div class="trigger">
+            <a class="page-link-3" href="/"><span><i class="fa fa-map-marker fa-lg"></i> Home</span></a>
+
+            <a class="page-link-3 " href="/aboutme/"><span><i class="fa fa-user fa-lg"></i> About Me</span></a>
+
+            <a class="page-link-3 " href="/mywork"><span><i class="fa fa-laptop fa-lg"></i> My Work</span></a>
+
+            <a class="page-link-3 " href="/blog"><span><i class="fa fa-book fa-lg"></i> Blog</span></a>
+
+            <a class="page-link-3 " href="/contact"><span><i class="fa fa-envelope different fa-lg"></i> Contact</span></a>
+
+            <a class="page-link-3" href="/linh_nguyen_my_CV_13.pdf" target="_blank" download="Pinglinh CV"><span><i class="fa fa-file-pdf-o fa-lg"></i> CV</span></a>
+          </div>
+
+      </nav>
+
+    <div class="site-content">
+        <div class="main">
+        <header class="site-header">
+
+  <div class="wrapper">
+    <a class="site-title" href="/">Linh Nguyen My</a>
+  </div>
+
+</header>
+          <div class="page-content">
+            <div class="wrapper">
+              <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">My first pull request</h1>
+    <p class="post-meta"><time datetime="2016-08-08T00:00:00+01:00" itemprop="datePublished">Aug 8, 2016</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p><img src="https://cdn-images-1.medium.com/max/2000/1*JqvfGfy0m6BceOmUOT_8tA.jpeg" alt="Photo from unsplash.com" height="465px" width="700px" class="img-responsive" /></p>
+
+<h2 id="why-do-a-pull-request">Why do a pull request?</h2>
+
+<p>Pull requests are a great way to make some contributions or suggestions to an open source project. What you do is you ‘fork’ the repository which ultimately copies the repository to your username and you can then work on making changes to the code. Once you have finished, you can then submit a pull request which will notify the owner of the original repository the changes that you have made and they can then review it. Where changes have been made, you and the owner can comment to discuss and come to an agreement. Any changes you need to make, you can still do so via git add, commit and push. If the owner is happy with all the changes, they will then merge your pull request with the original!</p>
+
+<p>Last week I submitted my first ever pull request to <a href="https://github.com/WeRockTech/werocktech.github.io">WeRockTech</a> repository. It was very fun and rewarding and I am so glad I was able to contribute. Through this experience, I decided to write a <strong>guide on how to do a pull request</strong>. There were some problems encountered along the way which I will also share below. I will be using <a href="https://github.com/WeRockTech/werocktech.github.io">WeRockTech</a> repository as an example.</p>
+
+<h2 id="how-to-submit-a-pull-request">How to submit a pull request</h2>
+<ol>
+  <li>
+    <p>Go to the main page of the repository at https://github.com/WeRockTech/werocktech.github.io</p>
+  </li>
+  <li>
+    <p>Click on the ‘Fork’ button on the top right-hand corner (note: GitHub layout may change in the future so it may be somewhere else)</p>
+  </li>
+  <li>
+    <p>This then takes you to https://github.com/pinglinh/werocktech.github.io — notice that the copied repo is now under my username</p>
+  </li>
+  <li>
+    <p>On terminal, go to where you want the repo to be (i.e. in my case I always choose Desktop), clone the repo and cd (change directory) into it:</p>
+
+    <p><code class="highlighter-rouge">
+ $ cd Desktop
+</code></p>
+
+    <p><code class="highlighter-rouge">
+ $ git clone https://github.com/pinglinh/werocktech.github.io
+</code></p>
+
+    <p><code class="highlighter-rouge">
+ $ cd werocktech.github.io
+</code></p>
+  </li>
+  <li>
+    <p>Add the upstream (original) repo as a remote so that you can track it and sync it with your forked master branch later:</p>
+
+    <p><code class="highlighter-rouge">
+ $ git remote add upstream https://github.com/WeRockTech/werocktech.github.io.git
+</code></p>
+
+    <p>(upstream just means the original repo you forked from)</p>
+  </li>
+  <li>
+    <p>Create a new branch where you will be making changes:</p>
+
+    <p><code class="highlighter-rouge">
+ $ git branch experiment
+</code></p>
+
+    <p>I called my branch ‘experiment’ since i would be experimenting with some of my ideas I had in mind but obviously you can call the new branch how you like it to be. It is advisable to name it something that will help you recognise what it is especially when working with many branches, you want to remember which is which.</p>
+
+    <p><code class="highlighter-rouge">
+ $ git checkout experiment
+</code></p>
+
+    <p>This command switches to the branch you have just created.</p>
+  </li>
+  <li>
+    <p>In the branch you’ve just created, you can make changes using <strong>add</strong>, <strong>commit</strong> and <strong>push</strong> commands. To find out how to do this <a href="https://medium.com/@pinglinh/how-to-use-git-pull-80ad77a8afc6#.lo0gwag41">click here</a> to check out my other blog post.</p>
+  </li>
+  <li>
+    <p>Once you are happy with your changes, you will need to update your master branch with the upstream repo:</p>
+
+    <p><code class="highlighter-rouge">
+ $ git fetch upstream
+</code></p>
+
+    <p><code class="highlighter-rouge">
+ $ git checkout master
+</code></p>
+
+    <p><code class="highlighter-rouge">
+ $ git merge upstream/master
+</code></p>
+
+    <p>The <strong>fetch</strong> command pulls up any commits from the upstream repo. The <strong>merge</strong> command will input any new changes from the upstream repo into your forked master branch.</p>
+  </li>
+  <li>
+    <p>Now that the master branch is up-to-date, you can go ahead and merge this with the other branch you created:</p>
+
+    <p><code class="highlighter-rouge">$ git checkout experiment</code></p>
+
+    <p>Always go to the branch where you want the changes to end up. In this case we want our updated master branch to be reflected in our ‘experiment’ branch.</p>
+  </li>
+  <li>
+    <p>Then merge your master branch:</p>
+
+    <p><code class="highlighter-rouge">$ git merge master</code></p>
+  </li>
+  <li>
+    <p>At this stage I encountered a conflict which I will explain how to resolve below, otherwise go to number 14 for pull request section.</p>
+
+    <p>My conflict message on terminal:</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>$ git merge master
+Auto-merging css/custom.css
+Auto-merging _includes/navigation.html
+Auto-merging _includes/footer.html
+Auto-merging _includes/banner.html
+CONFLICT (content): Merge conflict in _includes/banner.html
+</code></pre>
+    </div>
+
+    <p>The output tells me that the conflict is in the banner.html file in _includes folder.</p>
+  </li>
+  <li>
+    <p>You can also check which files have a conflict or have been modified by running the following command:</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>$ git status -s
+UU _includes/banner.html
+M  _includes/footer.html
+M  _includes/navigation.html
+M  css/custom.css
+</code></pre>
+    </div>
+
+    <p>U means conflict and M means modified.</p>
+  </li>
+  <li>
+    <p>In my case, my conflict was in the banner.html file. Opening up the file, this showed up:</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; 9a636223ace3b636f3dbfbcedcdc1de9f0860871
+&lt;i class="fa fa-youtube-square fa-1x"&gt;&lt;/i&gt;
+=======
+&lt;i class="fa fa-youtube-play"&gt;&lt;/i&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; Unfixed footer and added youtube icon
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+</code></pre>
+    </div>
+
+    <p>The first section before ===== is what came from the master branch and the bottom section is what was in my experiment branch. In order to resolve the conflict, you delete the whole section between «« and »» and input what you want. Add and commit your changes with a message saying you have resolved the conflict and state what was the problem, for example in my case it would be ‘git commit -m “Resolved youtube icon conflict”’ and make sure to push your changes to the right branch i.e. experiment in my scenario.
+14. Now that everything is resolved, we can submit a pull request:
+Go onto the forked repo on GitHub and click on ‘<strong>New Pull Request</strong>’</p>
+  </li>
+</ol>
+
+<p><img src="https://cdn-images-1.medium.com/max/1400/1*oB2we8QJmZOnHrvKveuIxA.png" alt="Forked repository of WeRockTech" height="465px" width="700px" class="img-responsive" /></p>
+
+<p>The base fork should be the upstream repo and base master.</p>
+
+<p>Head fork should be your copy of the repo and compare your second branch</p>
+
+<p>Here is how mine looked like:</p>
+
+<p>base fork: WeRockTech/werocktech.github.io
+base: master
+head fork: pinglinh/werocktech.github.io
+compare: experiment</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/1400/1*lKaGjRDx61yJi00Tal0lmQ.png" alt="Creating pull request" height="465px" width="700px" class="img-responsive" /></p>
+
+<p>Clicking on ‘Create pull request’, a markdown section will appear where you can add the type of request, title, description and screenshot. <strong>This is essential as it allows the owner to understand what you did and why. Adding a screenshot is a great way to visually showcase what your code achieved especially if it’s front-end.</strong></p>
+
+<p><img src="https://cdn-images-1.medium.com/max/1400/1*3DfiA-KDuWPbjVk0beS3dA.png" alt="Markdown section to add type, title, description and screenshot of the pull request." height="465px" width="700px" class="img-responsive" /></p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*YDaDNe9XTv-flQN_1sg-jg.png" alt="Input and explanation of my pull request." height="465px" width="700px" class="img-responsive" /></p>
+
+<p>You can also preview how the markdown will look like by clicking the ‘Preview’ tab.</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*aODC4P8fQVU4FiytSSZMPQ.png" alt="Preview your markdown edit." height="465px" width="700px" class="img-responsive" /></p>
+
+<p>Once you’re happy with your markdown edit, you can go ahead and click ‘Create pull request’.</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*hqSgIgnznwDdPGQFp8QBWw.png" alt="Click on ‘Create pull request’." height="465px" width="700px" class="img-responsive" /></p>
+
+<p>You will then be directed to your pull request page:</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*YYRdlvCUb9ipl6pS8gR5Uw.png" alt="" height="465px" width="700px" class="img-responsive" /></p>
+
+<p>You can also see your commit messages and any comments or changes that you’ve made after creating the pull request e.g. I changed the title therefore it shows as the latest change I have done and saved.
+<img src="https://cdn-images-1.medium.com/max/800/1*Nk4NPlvDsKqRZH5-4nZRvg.png" alt="History of changes and commits." height="465px" width="700px" class="img-responsive" /></p>
+
+<p>You can also add any comments to your pull request or close it if you no longer want it to be reviewed.
+<img src="https://cdn-images-1.medium.com/max/800/1*DMPxlG-rI0KNzKtuBu_f4Q.png" alt="Commenting your pull request." height="465px" width="700px" class="img-responsive" /></p>
+
+<p>That’s it! You then wait for the owner to review your request. If they are happy with it, they will merge it into the master branch. Alternatively they may comment on your code and provide other suggestions to which you can then change using the add, commit and push commands — this will automatically be updated for the owner to see and review further.</p>
+
+<p style="text-align: center">- - -</p>
+
+<p>This blog post has also been published on <a href="https://medium.com/@pinglinh/latest">medium</a>.</p>
+
+
+  </div>
+
+</article>
+
+            </div>
+          </div>
+
+           <footer class="site-footer">
+  <div class="wrapper">
+
+    <!-- <h2 class="footer-heading">Linh Nguyen My</h2> -->
+
+<!--     <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>Linh Nguyen My</li>
+          <li><a href="mailto:lnguyenmy1@gmail.com">lnguyenmy1@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <a href="https://uk.linkedin.com/in/lnguyenmy" target="_blank"><i class="fa fa-linkedin"></i></a>
+        <a href="https://twitter.com/pinglinh" target="_blank"><i class="fa fa-twitter"></i></a>
+        <a href="https://medium.com/@pinglinh" target="_blank"><i class="fa fa-medium"></i></a>
+        <a href="https://500px.com/pinglinh" target="_blank"><i class="fa fa-500px"></i></a>
+        <a href="https://github.com/pinglinh" target="_blank"><i class="fa fa-github-alt"></i></a>
+      </div> -->
+
+      <div class="footer">
+
+
+        <div class="social-media">
+        <a href="https://uk.linkedin.com/in/lnguyenmy" target="_blank"><i class="fa fa-linkedin fa-lg"></i></a>
+        <a href="https://twitter.com/pinglinh" target="_blank"><i class="fa fa-twitter fa-lg"></i></a>
+        <a href="https://medium.com/@pinglinh" target="_blank"><i class="fa fa-medium fa-lg"></i></a>
+        <a href="https://500px.com/pinglinh" target="_blank"><i class="fa fa-500px fa-lg"></i></a>
+        <a href="https://github.com/pinglinh" target="_blank"><i class="fa fa-github-alt fa-lg"></i></a>
+        <a href="mailto:lnguyenmy1@gmail.com"><i class="fa fa-envelope fa-lg"></i></a>
+        </div>
+
+        <div class="title-mail">
+        made with <span style="color: #D65F5F"><strong>&hearts;</strong></span> by <span style="color: #56dbc9"><strong>Linh Nguyen My</strong></span> | &copy; 2016 
+
+        <!-- Linh Nguyen My | www.pinglinh.com -->
+        </div>
+
+
+
+        <!-- <p>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</p> -->
+
+      
+    </div>
+
+  </div>
+
+</footer>
+
+
+        </div>
+      </div>
+  </div>
+</body>
+
+</html>
+

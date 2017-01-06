@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>pinglinh // How to reverse a string in Ruby without using the reverse! method</title>
+  <meta name="description" content="">
+	<link rel="stylesheet" href="/css/fontawesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/animate.css">
+  <link rel="icon" href="/photos/favicon.ico" type="image/x-icon">
+	<link href='https://fonts.googleapis.com/css?family=Montserrat|Damion|Lato' rel='stylesheet'>
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/hover-min.css">
+  <link rel="canonical" href="http://localhost:4000/blog/2016/09/26/how-to-reverse-string-in-ruby.html">
+  <link rel="alternate" type="application/rss+xml" title="Linh Nguyen My" href="http://localhost:4000/feed.xml">
+</head>
+
+
+<body>
+  <div class="whole-content">
+      <nav class="site-nav">
+          <a href="#" class="menu-icon">
+            <svg viewBox="0 0 18 15">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </a>
+
+          <div class="trigger">
+            <a class="page-link-3" href="/"><span><i class="fa fa-map-marker fa-lg"></i> Home</span></a>
+
+            <a class="page-link-3 " href="/aboutme/"><span><i class="fa fa-user fa-lg"></i> About Me</span></a>
+
+            <a class="page-link-3 " href="/mywork"><span><i class="fa fa-laptop fa-lg"></i> My Work</span></a>
+
+            <a class="page-link-3 " href="/blog"><span><i class="fa fa-book fa-lg"></i> Blog</span></a>
+
+            <a class="page-link-3 " href="/contact"><span><i class="fa fa-envelope different fa-lg"></i> Contact</span></a>
+
+            <a class="page-link-3" href="/linh_nguyen_my_CV_13.pdf" target="_blank" download="Pinglinh CV"><span><i class="fa fa-file-pdf-o fa-lg"></i> CV</span></a>
+          </div>
+
+      </nav>
+
+    <div class="site-content">
+        <div class="main">
+        <header class="site-header">
+
+  <div class="wrapper">
+    <a class="site-title" href="/">Linh Nguyen My</a>
+  </div>
+
+</header>
+          <div class="page-content">
+            <div class="wrapper">
+              <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">How to reverse a string in Ruby without using the reverse! method</h1>
+    <p class="post-meta"><time datetime="2016-09-26T00:00:00+01:00" itemprop="datePublished">Sep 26, 2016</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p><img src="https://cdn-images-1.medium.com/max/800/1*0jIqGNvljubRfmmRjHPdng.jpeg" alt="Rope — string same thing? (unsplash.com)" height="465px" width="700px" class="img-responsive" /></p>
+
+<p>A string is one of the data type in Ruby. This is usually a bit of text that you wrap around double/single quotation marks which you want to display to someone.</p>
+
+<p>In this blog post, I will attempt to explain how to reverse a string e.g. from “hello” to “olleh” <strong>without using Ruby’s reverse! method</strong>.</p>
+
+<p>First let’s define a method like so:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">reverse_string</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>My method is called <strong>reverse_string</strong> with a parameter <strong>string</strong>.</p>
+
+<p>To test and see whether our method is working we can just return the string in our method, then call this method outside of our method using terminal:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">reverse_string</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+  <span class="n">string</span>
+<span class="k">end</span>
+
+<span class="nb">puts</span> <span class="n">reverse_string</span><span class="p">(</span><span class="s2">"hello"</span><span class="p">)</span></code></pre></figure>
+
+<p>You know the program is working when you see the output as “hello” in your terminal.</p>
+
+<p>Now we can start defining our method. We can call a split method on the string in our reverse_string method and assign this to a variable → we can then call the variable instead of writing out the string and split method:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">reverse_string</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+  <span class="n">split_string</span> <span class="o">=</span> <span class="n">string</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s2">""</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="nb">puts</span> <span class="n">reverse_string</span><span class="p">(</span><span class="s2">"hello"</span><span class="p">)</span>
+
+<span class="no">Terminal</span><span class="p">:</span>
+<span class="p">[</span><span class="s2">"h"</span><span class="p">,</span> <span class="s2">"e"</span><span class="p">,</span> <span class="s2">"l"</span><span class="p">,</span> <span class="s2">"l"</span><span class="p">,</span> <span class="s2">"o"</span><span class="p">]</span></code></pre></figure>
+
+<p>The parenthesis and quotation marks next to split tell the method how the string should be split up. When you do not add any spaces between quotation marks (“”), the string will be split up between individual characters as you are specifying that the characters themselves are the separators. However if you were to add a space to this such as (“ ”), this would mean that the split method would only split the string where there’s a space e.g.:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">reverse_string</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+  <span class="n">split_string</span> <span class="o">=</span> <span class="n">string</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s2">" "</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="nb">puts</span> <span class="n">reverse_string</span><span class="p">(</span><span class="s2">"Hello, my name is PINGLINH."</span><span class="p">)</span>
+
+<span class="no">Terminal</span> <span class="ss">output:
+</span><span class="p">[</span><span class="s2">"Hello,"</span><span class="p">,</span> <span class="s2">"my"</span><span class="p">,</span> <span class="s2">"name"</span><span class="p">,</span> <span class="s2">"is"</span><span class="p">,</span> <span class="s2">"PINGLINH."</span><span class="p">]</span></code></pre></figure>
+
+<p>Note that the .split method automatically adds the split up string into an array.</p>
+
+<p>We can then create an empty array so that later on we can use the push and pop methods.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">reverse_string</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+  <span class="n">split_str</span> <span class="o">=</span> <span class="n">string</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s2">""</span><span class="p">)</span>
+  <span class="n">reversed</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">end</span>
+
+<span class="nb">puts</span> <span class="n">reverse_string</span><span class="p">(</span><span class="s2">"hello"</span><span class="p">)</span></code></pre></figure>
+
+<p>Now what we want to do is to know the size of our string so that we can then repeat our push and pop method the same number of times as our string e.g. if my string’s is “hello”, the size is 5 and therefore the methods should be repeated 5 times to return the same number of characters.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">reverse_string</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+  <span class="n">split_string</span> <span class="o">=</span> <span class="n">string</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s2">""</span><span class="p">)</span>
+  <span class="n">reversed</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="n">string</span><span class="p">.</span><span class="nf">size</span><span class="p">.</span><span class="nf">times</span>
+<span class="k">end</span>
+
+<span class="nb">puts</span> <span class="n">reverse_string</span><span class="p">(</span><span class="s2">"hello"</span><span class="p">)</span></code></pre></figure>
+
+<p>We can now go ahead to define our push and pop method:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">reverse_string</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+  <span class="n">split_string</span> <span class="o">=</span> <span class="n">string</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s2">""</span><span class="p">)</span>
+  <span class="n">reversed</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="n">string</span><span class="p">.</span><span class="nf">size</span><span class="p">.</span><span class="nf">times</span> <span class="p">{</span> <span class="n">reversed</span> <span class="o">&lt;&lt;</span> <span class="n">split_string</span><span class="p">.</span><span class="nf">pop</span> <span class="p">}</span>
+<span class="k">end</span>
+
+<span class="nb">puts</span> <span class="n">reverse_string</span><span class="p">(</span><span class="s2">"hello"</span><span class="p">)</span></code></pre></figure>
+
+<p>As the method is short, you don’t need to do ‘do’ and ‘end’ and use curly brackets instead. The « is the same as <strong>push</strong>. So what you are saying here is that from the array of split up strings, remove the last element in the array. Then the push method will append this to the reversed array. Below I have provided a more visual way of representing this:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">split_string</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"h"</span><span class="p">,</span> <span class="s2">"e"</span><span class="p">,</span> <span class="s2">"l"</span><span class="p">,</span> <span class="s2">"l"</span><span class="p">,</span> <span class="s2">"o"</span><span class="p">]</span>
+<span class="n">reversed</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">split_string</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"h"</span><span class="p">,</span> <span class="s2">"e"</span><span class="p">,</span> <span class="s2">"l"</span><span class="p">,</span> <span class="s2">"l"</span><span class="p">]</span>
+<span class="n">reversed</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"o"</span><span class="p">]</span>
+
+<span class="n">split_string</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"h"</span><span class="p">,</span> <span class="s2">"e"</span><span class="p">,</span> <span class="s2">"l"</span><span class="p">]</span>
+<span class="n">reversed</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"o"</span><span class="p">,</span> <span class="s2">"l"</span><span class="p">]</span>
+
+<span class="n">split_string</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"h"</span><span class="p">,</span> <span class="s2">"e"</span><span class="p">]</span>
+<span class="n">reversed</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"o"</span><span class="p">,</span> <span class="s2">"l"</span><span class="p">,</span> <span class="s2">"l"</span><span class="p">]</span>
+
+<span class="n">split_string</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"h"</span><span class="p">]</span>
+<span class="n">reversed</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"o"</span><span class="p">,</span> <span class="s2">"l"</span><span class="p">,</span> <span class="s2">"l"</span><span class="p">,</span> <span class="s2">"e"</span><span class="p">]</span>
+
+<span class="n">split_string</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">reversed</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"o"</span><span class="p">,</span> <span class="s2">"l"</span><span class="p">,</span> <span class="s2">"l"</span><span class="p">,</span> <span class="s2">"e"</span><span class="p">,</span> <span class="s2">"h"</span><span class="p">]</span></code></pre></figure>
+
+<p>The last we need to do is to join the string elements back together. We can use the join method which returns a string created by converting each element of the array to a string.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">reverse_string</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+  <span class="n">split_string</span> <span class="o">=</span> <span class="n">string</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s2">""</span><span class="p">)</span>
+  <span class="n">reversed</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="n">string</span><span class="p">.</span><span class="nf">size</span><span class="p">.</span><span class="nf">times</span> <span class="p">{</span> <span class="n">reversed</span> <span class="o">&lt;&lt;</span> <span class="n">split_string</span><span class="p">.</span><span class="nf">pop</span> <span class="p">}</span>
+  <span class="n">reversed</span><span class="p">.</span><span class="nf">join</span>
+<span class="k">end</span>
+
+<span class="nb">puts</span> <span class="n">reverse_string</span><span class="p">(</span><span class="s2">"hello"</span><span class="p">)</span></code></pre></figure>
+
+<p>And that my friends, is how you reverse a string in Ruby without using the reverse! method…jk</p>
+
+<p>There are plenty of other ways to do this but for now this is the simplest way that I understand. If anyone knows of other methods, please post the code in the comments below! I would love to know but please do explain what you are doing because I’m still a beginner and struggle to understand sometimes. Thanks!</p>
+
+<p style="text-align: center">- - -</p>
+
+<p>This blog post has also been published on <a href="https://medium.com/@pinglinh/latest">medium</a> .</p>
+
+  </div>
+
+</article>
+
+            </div>
+          </div>
+
+           <footer class="site-footer">
+  <div class="wrapper">
+
+    <!-- <h2 class="footer-heading">Linh Nguyen My</h2> -->
+
+<!--     <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>Linh Nguyen My</li>
+          <li><a href="mailto:lnguyenmy1@gmail.com">lnguyenmy1@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <a href="https://uk.linkedin.com/in/lnguyenmy" target="_blank"><i class="fa fa-linkedin"></i></a>
+        <a href="https://twitter.com/pinglinh" target="_blank"><i class="fa fa-twitter"></i></a>
+        <a href="https://medium.com/@pinglinh" target="_blank"><i class="fa fa-medium"></i></a>
+        <a href="https://500px.com/pinglinh" target="_blank"><i class="fa fa-500px"></i></a>
+        <a href="https://github.com/pinglinh" target="_blank"><i class="fa fa-github-alt"></i></a>
+      </div> -->
+
+      <div class="footer">
+
+
+        <div class="social-media">
+        <a href="https://uk.linkedin.com/in/lnguyenmy" target="_blank"><i class="fa fa-linkedin fa-lg"></i></a>
+        <a href="https://twitter.com/pinglinh" target="_blank"><i class="fa fa-twitter fa-lg"></i></a>
+        <a href="https://medium.com/@pinglinh" target="_blank"><i class="fa fa-medium fa-lg"></i></a>
+        <a href="https://500px.com/pinglinh" target="_blank"><i class="fa fa-500px fa-lg"></i></a>
+        <a href="https://github.com/pinglinh" target="_blank"><i class="fa fa-github-alt fa-lg"></i></a>
+        <a href="mailto:lnguyenmy1@gmail.com"><i class="fa fa-envelope fa-lg"></i></a>
+        </div>
+
+        <div class="title-mail">
+        made with <span style="color: #D65F5F"><strong>&hearts;</strong></span> by <span style="color: #56dbc9"><strong>Linh Nguyen My</strong></span> | &copy; 2016 
+
+        <!-- Linh Nguyen My | www.pinglinh.com -->
+        </div>
+
+
+
+        <!-- <p>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</p> -->
+
+      
+    </div>
+
+  </div>
+
+</footer>
+
+
+        </div>
+      </div>
+  </div>
+</body>
+
+</html>
+
