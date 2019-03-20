@@ -11,3 +11,7 @@
 ### Mobile Version
 
 ![Website Mobile](/photos/website_mobile.png)
+
+### Installation
+1. Install jekyll via `gem install bundler jekyll`
+1. Run `jekyll serve` or `bundle exec jekyll serve`
